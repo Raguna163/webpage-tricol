@@ -1,0 +1,57 @@
+<!-- USER.EJS -->
+<%- include('../partials/header'); %>
+
+<div class="ui container raised very padded segment black" id="stuck">
+	<br>
+	<h2 class="ui horizontal divider header"><i class="user icon"></i>Users</h2>
+	<br>
+	<div class="ui four cards basic segment">
+		<% profiles.forEach(profile =>{ -%>
+		<a href="/users/view/<%= profile._id %>" class="ui card <%= profile.colour %> profile-card">
+			<div class="image">
+				<img src="<%= profile.avatar %>">
+			</div>
+			<div class="content">
+				<div class="ui header <%= profile.colour %>">
+				<h3>
+					<%= profile.username %>
+					<% if (typeof user !== 'undefined' && profile.username === user.username) { -%>
+					- You
+					<% } -%>
+					<i class="<%= profile.gender %> icon"></i>
+					<i class="<%= profile.iso %> flag"></i>
+				</h3>
+				</div>
+				<div class="meta">
+					<%= profile.country %>, <%= profile.city %>
+				</div>
+				<div class="description">
+					<p><i class="comment icon"></i>
+						<% if (profile.comments.length == 1) { -%>
+							<%= profile.comments.length %> comment
+						<% } else if (profile.comments.length > 1) { -%>
+							<%= profile.comments.length %> comments
+						<% } else { -%>
+							No comments
+						<% } -%>
+					</p>
+					<p><i class="users icon"></i>
+						<% if (profile.friends.length == 1) { -%>
+							<%= profile.friends.length %> friend
+						<% } else if (profile.friends.length > 1) { -%>
+							<%= profile.friends.length %> friends
+						<% } else { -%>
+							No friends
+						<% } -%>
+					</p>
+				</div>
+			</div>
+			<div class="extra content">
+				<p>Last Active <%= profile.lastActive.fromNow() %></p>
+				<p>Member Since <%= profile.lastActive.format("MMMM Do YYYY") %></p>
+			</div>
+		</a>
+		<% }); -%>
+	</div>
+</div>
+<%- include('../partials/footer'); %>

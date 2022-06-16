@@ -1,0 +1,31 @@
+<% if (reply) { -%>
+<div class="comments">
+<% } else { -%>
+<div class="ui huge threaded comments" style="width: 100%;">
+<% } -%>
+	<% comments.forEach((com) =>{ -%>
+		<div class="comment">
+			<a href="/users/view/<%= com.author._id %>" class="avatar">
+				<img src="<%= com.author.avatar %>">
+			</a>
+			<div class="content">
+				<a href="/users/view/<%= com.author._id %>" class="author"><%= com.author.username %></a>
+				<div class="metadata"><div class="date"><%= com.createdAt.fromNow() %></div></div>
+				<div class="text"><%= com.content %></div>
+				<div class="actions">
+					<a class="reply-comment" data-id="<%= com._id %>" data-author="<%= com.author.username %>"><i class="edit icon"></i>Reply</a>
+					<% if (com.replies.length > 0) { -%>
+						<a class="collapse-replies">
+							<i class="angle down icon"></i>
+							<span>Hide</span>
+							<span style="display: none">Show</span>
+						</a>
+					<% } -%>
+				</div>
+			</div>
+			<% if (com.replies.length > 0) { -%>
+				<%- include('comment',{comments:com.replies,reply: true}); %>
+			<% } -%>
+		</div>
+	<% }) -%>
+</div>      

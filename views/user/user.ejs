@@ -1,0 +1,99 @@
+<!-- USER.EJS -->
+<%- include('../partials/header'); %>
+<div class="ui container raised very padded segment <%= profile.colour %>">
+	<div class="ui close left rail">
+		<% if (typeof user !== 'undefined' && profile.username !== user.username) { -%>
+		<div class="ui basic segment">
+			<% if (profile.friends.some(({username}) => username === user.username)) { -%>
+				<a class="ui button basic fluid <%= profile.colour %>" href="../delete/<%= profile._id %>">Delete Friend</a>
+			<% } else { -%>
+				<a class="ui button basic fluid <%= profile.colour %>" href="../add/<%= profile._id %>">Add Friend</a>
+			<% } -%>
+		</div>
+		<% } -%>
+		<% if (profile.friends.length > 0) { -%>
+		<div class="ui two cards segment">
+			<h2 class="ui horizontal divider"><i class="address card icon"></i>Friends</h2>
+			<% profile.friends.forEach(friend => { -%>
+			<a href="/users/view/<%= friend._id %>" class="ui card <%= friend.colour %>">
+				<div class="image">
+					<img src="<%= friend.avatar %>">
+				</div>
+				<div class="content">
+					<div class="header">
+						<%= friend.username %>
+					</div>
+					<% if (friend.friends.length == 1) { -%>
+					<%= friend.friends.length %> friend
+					<% } else if (friend.friends.length > 1) { -%>
+					<%= friend.friends.length %> friends
+					<% } else { -%>
+					No friends
+					<% } -%>
+				</div>
+			</a>
+			<% }); -%>
+		</div>
+		<% } else { -%>
+		<div class="ui placeholder segment">
+			<div class="ui icon header">
+				<i class="frown outline icon"></i>
+				No friends yet :(
+			</div>
+			<% if (typeof user !== 'undefined' && profile.username === user.username) { -%>
+				<a href="/users" class="ui button <%= profile.colour %>">Find Friends</a>
+			<% } else { -%>
+				<a href="../add/<%= profile._id %>" class="ui button <%= profile.colour %>">Add Friend</a>
+			<% } -%>	
+		</div>
+		<% } -%>
+	</div>
+
+	<div class="ui items">
+		<div class="item">
+			<a class="ui small circular image" href="/users">
+				<img src="<%= profile.avatar %>">
+			</a>
+			<div class="content">
+				<a class="ui header <%= profile.colour %>"><%= profile.username %></a>
+				<div class="description">
+					<p><i class="calendar icon"></i><%= profile.joined.format("MMMM Do, YYYY") %></p>
+					<p><i class="<%= profile.iso %> flag"></i><%= profile.country %></p>
+					<p><i class="home icon"></i><%= profile.city %></p>
+					<p style="text-transform: capitalize;"><i class="<%= profile.gender %> icon"></i><%= profile.gender %></p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<% if (typeof profile.gallery !== 'undefined' && profile.gallery.images.length > 0) { -%>
+	<div class="ui grid segment black" id="full-gallery-images">
+		<% profile.gallery.images.forEach((img,idx) => { -%>
+		<a class="column" href="<%= gallery._id %>/<%= idx %>" style="width: <%= 23 * img.meta.aspect %>%">
+			<img src='<%= img.path %>'>
+		</a>
+		<% }) -%>
+	</div>
+	<% } -%>
+
+	<% if (profile.comments.length > 0) { -%>
+	<h2 class="ui horizontal divider header"><i class="comments outline icon"></i>Comments</h2>
+	<div class="ui segments">
+		<div class="segment" style="padding: 20px">
+			<%- include('../partials/comment',{comments:profile.comments, reply: false}); %>
+		</div>
+		<% } -%>
+		<% if (typeof user !== 'undefined') { -%>
+		<div class="segment" style="padding: 20px">
+			<button class="ui fluid basic button <%= profile.colour %>" id="new-comment">Add Comment</button>
+		</div>
+	</div>
+	<% } -%>
+</div>
+<% if (typeof user !== 'undefined') { -%>
+<%- include('../partials/commentmodal', { profile: profile, type: "comment-modal" }); %>
+<%- include('../partials/commentmodal', { profile: profile, type: "reply-modal" }); %>
+<% } -%>
+<script type="text/javascript" src="/js/comments.js"></script>
+<%- include('../partials/footer'); %>

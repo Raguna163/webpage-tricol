@@ -1,0 +1,26 @@
+<% if (route.length > 0) { -%>
+	<div class="item">
+		<div class="ui breadcrumb">
+			<% let link = ""; -%>
+			<% route.forEach((crumb,idx,arr) => { -%>
+				<% if (crumb.length > 0) { -%>
+					<i class="right chevron icon divider"></i>
+					<% if (crumb.length === 24) { -%>
+						<% if (arr[idx-1] === "pages" && typeof page !== 'undefined') { -%>
+							<a href="/<%= link + crumb %>" class="section"><%= page.name %></a>
+						<% } else if (arr[idx-1] === "galleries" && typeof gallery !== 'undefined') { -%>
+							<a href="/<%= link + crumb %>" class="section"><%= gallery.name %></a>
+						<% } else if (arr[idx-1] === "view" && typeof profile !== 'undefined') { -%>
+							<a href="/<%= link + crumb %>" class="section"><%= profile.username %></a>
+						<% } -%>
+					<% } else if (crumb.length === 2 || crumb.length === 1 && typeof gallery.images !== 'undefined') { -%>
+							<a href="/<%= link + crumb %>" class="section"><%= gallery.images[crumb].originalname %></a>
+					<% } else { -%>
+						<a href="/<%= link + crumb %>" class="section"><%= crumb %></a>
+					<% } -%>
+					<% link = link + crumb + '/' -%>
+				<% } -%>
+			<% }) -%>
+		</div>
+	</div>
+<% } -%>

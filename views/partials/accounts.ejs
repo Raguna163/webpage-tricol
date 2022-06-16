@@ -1,0 +1,31 @@
+<div class="right menu">
+	<% if (!user) { -%>
+	<a class="item" href="/users/register"><i class="user plus icon"></i>Register</a>
+	<a class="item" href="/users/login"><i class="sign-out icon"></i>Log In</a>
+	<% } else { -%>
+	<a href="/users/view/<%= user._id %>" class="ui item image label" id="current-user">
+		<img class="ui right spaced" src="<%= user.avatar %>">
+		<%= user.username %>
+	</a>	
+	<a class="item" href="/users/logout"><i class="sign-out icon"></i>Log out</a>
+	<% } -%>
+</div>
+<% if (typeof user !== 'undefined') { -%>
+<div class="ui special popup">
+	<a href="/users/view/<%= user._id %>" class="ui card <%= user.colour %>">
+		<div class="image">
+			<img src="<%= user.avatar %>">
+		</div>
+		<div class="content">
+			<div class="header"><%= user.username %></div>
+			<% if (user.friends.length == 1) { -%>
+			<%= user.friends.length %> friends
+			<% } else if (user.friends.length > 1) { -%>
+			<%= user.friends.length %> friends
+			<% } else { -%>
+			No friends
+			<% } -%>
+		</div>
+	</a>
+</div>
+<% } -%>

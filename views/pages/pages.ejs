@@ -1,0 +1,47 @@
+<!-- PAGES.EJS -->
+<% let col = ['red','orange','yellow','green','blue','violet','pink']; -%>
+<%- include('../partials/header'); %>
+<div class="ui container raised very padded segment black">
+	<div class="ui large secondary menu">
+		<div class="header item"><i class="file alternate outline icon"></i>PAGES</div>
+		<div class="right menu">
+			<a href="new" class="item"> New Page <i class="icon plus"></i></a>
+		</div>
+	</div>
+	<div class="ui divider"></div>
+	<br>
+	<br>
+	<% if (pages.length > 0) { -%>
+	<div class="ui relaxed divided items">
+		<% pages.forEach((page) => { -%>
+		<div class="item">
+			<div class="ui medium image">
+				<img src='<%= page.image %>'>
+			</div>
+			<div class="middle aligned content">
+				<a href="<%= page._id %>" class="header"><i class="file alternate icon"></i><%= page.name %></a>
+				<div class="meta"><%= page.createdAt.calendar() %></div>
+				<div class="ui divider"></div>
+				<div class="description" style="margin: 20px;"><%= page.description %></div>
+					<% if (page.categories.length > 0) { -%>
+				<div class="extra">
+					<i class="hashtag icon black"></i>
+					<%  page.categories.forEach((category,idx) => {  -%>
+					<div class="ui inverted basic label <%= col[idx] %>"><%= category %></div>
+					<% }) -%>
+					<a href="<%= page._id %>" class="ui small basic button view-page">View...<i class="right chevron icon"></i></a>
+				</div>
+					<% } -%>
+			</div>
+		</div>
+		<% }) -%>
+	</div>
+	<% } else { -%>
+	<div class="ui placeholder segment">
+		<div class="ui icon header"><i class="file alternate outline icon"></i>No pages yet</div>
+		<a href="pages/new" class="ui button black">New Page</a>
+	</div>
+	<% } -%>
+</div>
+
+<%- include('../partials/footer'); %>

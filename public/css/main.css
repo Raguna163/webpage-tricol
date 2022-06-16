@@ -1,0 +1,154 @@
+/* ===== UNIVERSAL STYLES ===== */
+*, *::after, *::before {
+	box-sizing: border-box;
+}
+body {
+    min-height: 100vh;
+    position: relative;
+    background-color: aliceblue;
+	background-image: url('/images/greek-vase.png');
+    /* background-image: url('/images/pattern.jpg'); */
+}
+img {
+	border-radius: 5px;
+    width: 100%;
+}
+video {
+    width: 100%;
+}
+a {
+	color: inherit;
+}
+
+form {
+    position: relative;
+}
+
+nav * {
+    font-size: 14px !important;
+}
+
+.container {
+    margin: 80px auto !important;
+}
+
+.right .icon {
+	margin-left: 10px !important;
+}
+
+.ui > img {
+	width: 100%;
+}
+
+.label {
+    cursor: default;
+}
+
+/* ===== PAGE / GALLERY ===== */
+.story-content {
+    font-size: 1.2rem;
+}
+
+.hidden-form {
+    position: absolute !important;
+    width: 0.1px !important;
+    height: 0.1px !important;
+    z-index: -10;
+    bottom: 20px;
+}
+
+/* ===== NEW / EDIT - GALLERY / PAGE ===== */
+#file-input, #multi-file-input, #vid-file-input, #avatar-input {
+    opacity: 0;
+    height: 100%;
+    padding: 0;
+}
+
+#drop-img {
+    position: relative;
+    height: 300px;
+    padding: 0;
+}
+
+#drop-img span {
+    position: absolute;
+    top: 140px;
+    left: 0;
+    right: 0;
+    width: 20%;
+    margin: auto;
+}
+
+/* ===== OTHER ===== */
+#splash-gif {
+    width: 100%;
+}
+
+textarea {
+    resize: none;
+}
+/* ====== FULL GALLERY ====== */
+#full-gallery {
+    width: 90%;
+    margin: 50px auto;
+}
+
+#full-gallery-images {
+    justify-content: space-around;
+}
+
+#full-gallery-images .column {
+    display: grid;
+    padding: 0;
+    margin: 10px auto;
+}
+
+#full-gallery-images img {
+    width: 100%;
+    align-self: center;
+} 
+
+#multi-preview-img img {
+    object-fit: contain;
+}
+
+div.breadcrumb a.section {
+    color: black;
+    text-transform: capitalize;
+}
+
+.view-page {
+    position: absolute;
+    top: 30px;
+    right: 10px;
+/*     width: 90% !important;
+    margin: auto !important; */
+}
+
+.view-button {
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    width: 90% !important;
+    margin: auto !important;
+}
+
+.profile-card .header h3 {
+    position: relative;
+}
+
+.profile-card h3 i {
+    position: absolute;
+    right: 0;
+}
+
+.profile-card h3 i:nth-of-type(2) {
+    right: 20px;
+    top: 4px;
+}
+
+#footer {
+    position: absolute;
+    bottom: 0;
+}

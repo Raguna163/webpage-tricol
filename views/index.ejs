@@ -1,0 +1,16 @@
+<!-- INDEX.EJS -->
+<%- include('partials/header'); %>
+<div class="ui container very padded segment">
+    <div class="ui segment">
+        <h1 class="ui center aligned header">WELCOME</h1>
+    </div>
+	<% if (!user) { -%>
+        <div class="ui fluid buttons">
+            <a class="ui basic big button black" href="/users/register">Register</a>
+            <a class="ui basic big button black" href="/users/login">Log In</a>
+        </div>
+	<% } else { -%>
+            <a class="ui fluid huge basic button black" href="/pages">Enter</a>
+	<% } -%>
+</div>
+<%- include('partials/footer'); %>

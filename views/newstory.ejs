@@ -1,0 +1,38 @@
+<%- include('partials/header'); %>
+<div class="ui container raised very padded segment">
+    <div class="ui left rail">
+        <div class="ui card">
+            <div class="image">
+                <img id="preview-img" src="#" alt="">
+            </div>
+            <div class="content">
+                <h4 id="preview-text">No Image Selected</h4>
+            </div>
+        </div>
+    </div>
+    <h1><i class="file alternate icon"></i>New Story - <%= page.name %></h1>
+    <hr>
+    <br>
+    <form class="ui form large" method="POST" action="/pages/<%= page._id %>/stories" enctype='multipart/form-data'>
+        <div class="field">
+            <label>Story Title</label>
+            <input type="text" name="name" placeholder="Title...">
+        </div>
+        <br>
+        <div class="field">
+            <label>Story</label>
+            <textarea name="story" rows=8 placeholder="Story..."></textarea>
+        </div>
+        <br>
+        <div class="field">
+            <label>Image</label>
+            <div class="ui segment" id="drop-img"> 
+                <span class="ui header">DROP IMAGE HERE</span>
+                <input id="file-input" type="file" name="img" accept="image/*">
+            </div>
+        </div>
+        <br>
+        <button class="ui button large black" type="submit"><i class="save outline icon"></i>SUBMIT</button>
+    </form>
+</div>
+<%- include('partials/footer'); %>

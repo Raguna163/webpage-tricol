@@ -1,0 +1,57 @@
+<%- include('partials/header'); %>
+<div class="ui container raised very padded segment" id="stuck">
+    <div class="ui left very close rail">
+        <div class="ui card sticky">
+            <div class="image">
+                <img id="preview-img" src="#" alt="">
+            </div>
+            <div class="content">
+                <h4 id="preview-text">No Image Selected</h4>
+            </div>
+        </div>
+    </div>
+    <div class="ui right very close rail">
+        <div class="ui card sticky">
+            <div class="image">
+                <video id="preview-vid" src="#" controls></video>
+            </div>
+            <div class="content">
+                <h4 id="preview-vid-text">No Video Selected</h4>
+            </div>
+        </div>
+    </div>
+    <h1><i class="file alternate icon"></i>New Video</h1>
+    <hr>
+    <br>
+    <form class="ui form large" method="POST" action='/pages/<%= id %>/videos/' enctype='multipart/form-data'>
+        <div class="field">
+            <label>Video Name</label>
+            <input type="text" name="name" placeholder="Name...">
+        </div>
+        <br>
+        <div class="field"> 
+            <label>Video Description</label>
+            <input type="text" name="description" placeholder="Description...">
+        </div>
+        <br>
+        <div class="two fields">
+            <div class="field">
+                <label>Image</label>
+                <div class="ui segment" id="drop-img">
+                    <span class="ui header">DROP IMAGE HERE</span>
+                    <input id="file-input" type="file" name="img" accept="image/*">
+                </div>
+            </div>
+            <div class="field">
+                <label>Video</label>
+                <div class="ui segment" id="drop-img">
+                    <span class="ui header">DROP VIDEO HERE</span>
+                    <input id="vid-file-input" type="file" name="vid" accept="video/*">
+                </div>
+            </div>
+        </div>
+        <br>
+        <button class="ui button large black" type="submit"><i class="save outline icon"></i>SUBMIT</button>
+    </form>
+</div>
+<%- include('partials/footer'); %>

@@ -1,0 +1,100 @@
+<!-- SHOWIMG.EJS -->
+<% let this_img = gallery.images[params.img] -%>
+<% let prev_img = parseInt(params.img) - 1 -%>
+<% let next_img = parseInt(params.img) + 1 -%>
+<%- include('../partials/header'); %>
+<div class="ui raised padded segment black container" id="stuck">
+	<div class="ui left very close rail">
+		<% if (prev_img < 0) { -%>
+			<div class="ui very padded segment sticky">
+				<h2 class="ui center aligned icon header"><i class="image outline icon"></i>FIRST IMAGE</h2>
+			</div>
+		<% } else { -%>
+			<a class="ui card sticky" href="<%= prev_img %>">
+				<% let previous_image = gallery.images[prev_img] -%>
+				<div class="image">
+					<img src="<%= previous_image.path %>" style="width: 100%">
+				</div>
+				<div class="content">
+					<h3 class="header">Previous Image</h3>
+					<div class="meta"><%= previous_image.createdAt.calendar() %></div>
+				</div>
+			</a>
+		<% } -%>
+	</div>
+	<div class="ui right very close rail">
+		<% if (next_img >= gallery.images.length) { -%>
+			<div class="ui very padded segment sticky">
+				<h2 class="ui center aligned icon header"><i class="image outline icon"></i>LAST IMAGE</h2>
+			</div>
+		<% } else { -%>
+			<% let next_image = gallery.images[next_img] -%>
+			<a class="ui card sticky" href="<%= next_img %>">
+				<div class="image">
+					<img src="<%= next_image.path %>" style="width: 100%">
+				</div>
+				<div class="content">
+					<h3 class="header right aligned">Next Image</h3>
+					<div class="meta right aligned"><%= next_image.createdAt.calendar() %></div>
+				</div>
+			</a>
+		<% } -%>
+	</div>
+	<div class="ui segment" id="main-img">
+		<a class="image" href="<%= this_img.path %>" target="_blank">
+			<img id="full-img" src="<%= this_img.path %>" style="width: 100%">
+		</a>
+	</div>
+	<div class="ui divider"></div>
+	<div class="ui fluid buttons">
+		<a class="ui button basic black" href="<%= params.img %>/save">
+			<i class="icon plus"></i>
+			Save
+		</a>
+		<a class="ui button basic black" href="<%= this_img.path %>" download="<%= gallery.images[params.img].originalname %>">
+			<i class="download icon"></i>
+			Download
+		</a>
+		<a class="ui button basic black submit-delete">
+			<i class="icon close"></i>
+			Delete
+		</a>
+		<form class="hidden-form" action="<%= this_img._id %>?_m=DELETE" method="POST"></form>
+	</div>
+	<div class="ui basic very padded segment" style="font-size: 20px; line-height: 1.5; text-indent: 20px;">
+		<%= gallery.description %>
+	</div>
+	<div class="ui three statistics">
+		<div class="statistic">
+			<% if (this_img.meta.aspect > 1) { -%>
+				<div class="text value"><%= this_img.meta.width %><br>✕<%= this_img.meta.height %></div>
+			<% } else { -%>
+				<div class="text value"><%= this_img.meta.height %><br>✕<%= this_img.meta.width %></div>
+			<% } -%>
+			<div class="label">Dimensions</div>
+		</div>
+		<div class="statistic">
+			<% if (this_img.meta.aspect > 1) { -%>
+				<div class="text value">
+					<%= Number(Math.round(this_img.meta.aspect +'e'+3)+'e-'+3); %><br>landscape
+				</div>
+			<% } else { -%>
+				<div class="text value">
+					<%= Number(Math.round(this_img.meta.aspect +'e'+3)+'e-'+3); %><br>portrait
+				</div>
+			<% } -%>
+			<div class="label">Aspect</div>
+		</div>
+		<div class="statistic">
+			<div class="value">
+				<% if (this_img.meta.size > 1048576) { -%>
+					<%= Number(Math.round(this_img.meta.size / 1024 / 1024 + 'e' + 2)+'e-'+2); %>MB
+				<% } else { -%>
+					<%= Math.round(this_img.meta.size / 1024) %>KB
+				<% } -%>
+			</div>
+			<div class="label">Size</div>
+		</div>
+	</div>
+</div>
+<%- include('../partials/footer'); %>

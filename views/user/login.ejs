@@ -1,0 +1,21 @@
+<%- include('../partials/header'); %>
+<div class="ui container raised very padded segment">
+    <h1><i class="user circle icon"></i>Login</h1>
+    <hr>
+    <br>
+    <form class="ui form large" method="POST" action='/users/login' autocomplete="off">
+        <div class="two fields">
+            <div class="field">
+                <label>Username</label>
+                <input type="text" name="username" placeholder="username" tabindex="0">
+            </div>
+            <div class="field">
+                <label>Password</label>
+                <input type="password" name="password" placeholder="********" tabindex="0">
+            </div>
+        </div>
+        <br>
+        <button class="ui fluid basic button large black" type="submit"><i class="sign-in icon"></i>LOG IN</button>
+    </form>
+</div>
+<%- include('../partials/footer'); %>

@@ -1,0 +1,15 @@
+<!-- SEARCH.EJS -->
+<%- include('partials/header'); %>
+<div class="ui container very padded segment">
+    <div class="ui segment">
+        <h1 class="ui center aligned header">WELCOME</h1>
+    </div>
+    <div class="ui segment">
+    	<% results.forEach(result => { -%>
+            <% if (typeof result.thumbnil !== 'undefined') { -%>
+                <h1><%= result.name %></h1>
+            <% } -%>
+        <% }) -%>
+    </div>
+</div>
+<%- include('partials/footer'); %>

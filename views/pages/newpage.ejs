@@ -1,0 +1,43 @@
+<%- include('../partials/header'); %>
+<div class="ui container raised very padded segment">
+    <div class="ui left rail">
+        <div class="ui card">
+            <div class="image">
+                <img id="preview-img" src="#" alt="">
+            </div>
+            <div class="content">
+                <h4 id="preview-text">No Image Selected</h4>
+            </div>
+        </div>
+    </div>
+    <h1><i class="file alternate icon"></i>New Page</h1>
+    <hr>
+    <br>
+    <form class="ui form large" method="POST" action='/pages' enctype='multipart/form-data' autocomplete="off">
+        <div class="field">
+            <label>Page Name</label>
+            <input type="text" name="name" placeholder="Name...">
+        </div>
+        <br>
+        <div class="field">
+            <label>Page Description</label>
+            <input type="text" name="description" placeholder="Description...">
+        </div>
+        <br>
+        <div class="field">
+            <label>Categories</label>
+            <input type="text" name="categories" placeholder="Categories...">
+        </div>
+        <br>
+        <div class="field">
+            <label>Image</label>
+            <div class="ui segment" id="drop-img">
+                <span class="ui header">DROP IMAGE HERE</span>
+                <input id="file-input" type="file" name="img" accept="image/*">
+            </div>
+        </div>
+        <br>
+        <button class="ui button large black" type="submit"><i class="save outline icon"></i>SUBMIT</button>
+    </form>
+</div>
+<%- include('../partials/footer'); %>

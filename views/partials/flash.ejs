@@ -1,0 +1,27 @@
+<div class="ui container">
+	<% if (error.length > 0) { %>
+	<div class="ui error message">
+		<i class="close icon"></i>
+		<div class="header">Error!</div>
+		<p><%= error %></p>
+	</div>
+	<% } else if (positive.length > 0) { %>
+	<div class="ui positive message">
+		<i class="close icon"></i>
+		<div class="header">Success!</div>
+		<p><%= positive %></p>
+	</div>
+	<% } else if (info.length > 0) { %>
+	<div class="ui info message">
+		<i class="close icon"></i>
+		<div class="header">Information</div>
+		<p><%= info %></p>
+	</div>
+	<% } else if (success.length > 0) { %>
+	<div class="ui positive message">
+		<i class="close icon"></i>
+		<div class="header">Success!</div>
+		<p><%= success  %></p>
+	</div>
+	<% } %>
+</div>
