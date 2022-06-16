@@ -14,3 +14,5 @@ Example project showcasing most of the features present in social media websites
   - Reply to comments with nesting
 
 ##### Note: Uploading images and videos on a main server isn't best practice as it will bottleneck performance. It's better to outsource it to microservices or third party services, but isn't the focus of the project. 
+
+© 2022 Tristan Collicott 
